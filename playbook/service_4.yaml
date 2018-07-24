@@ -1,0 +1,18 @@
+---
+- name: "Declarative: Deploy / teardown a service template (AS3)"
+  hosts: bigips
+  gather_facts: False
+  connection: local
+  roles:
+    - service_4
+  vars:
+    resource_group_name: "{{ inventory_hostname }}"
+    state: "present"
+
+  vars_prompt:
+    - name: "username"
+      prompt: "Enter BIG-IP username"
+      private: yes
+    - name: "password"
+      prompt: "Enter BIG-IP password"
+      private: yes  
