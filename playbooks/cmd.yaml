@@ -20,10 +20,11 @@
           - list /ltm virtual all
           - list /ltm pool all
           - list /ltm node all
-        server: "{{ server }}"
+        server: "{{ inventory_hostname }}"
         password: "{{ bigip_pass }}"
         user: "{{ bigip_user }}"
-        validate_certs: "{{ validate_certs }}"
+        validate_certs: no
       register: result
+
 
     - debug: msg="{{ result.stdout_lines }}"
