@@ -15,7 +15,7 @@
     user: "{{ bigip_user }}"
     password: "{{ bigip_pass }}"
     name: waf_baseCredentials
-    #file: "roles/hackazon/files/linux-high.xml"
+    #file: "{{ roles_path }}/hackazon/files/linux-high.xml"
     active: yes
     state: present
     validate_certs: no
@@ -23,7 +23,7 @@
 
 - name: Add an iAppLX Package for Application Services 3
   bigip_iapplx_package:
-    package: "roles/hackazon/files/f5-appsvcs-3.1.0-3.noarch.rpm"
+    package: "{{ roles_path }}/hackazon/files/f5-appsvcs-3.1.0-3.noarch.rpm"
     password: "{{ bigip_pass }}"
     server: "{{resource_group_name}}"
     state: present
