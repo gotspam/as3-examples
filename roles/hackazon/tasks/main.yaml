@@ -1,4 +1,4 @@
-# Create or update a Service 4, AS3 Build WAF Application
+# Create or update a Hackazon, AS3 Build WAF Application
 
 - name: Wait a maximum of 300 seconds for BIG-IP to be ready to take configuration
   bigip_wait:
@@ -9,13 +9,13 @@
     validate_certs: no
   delegate_to: localhost
 
-- name: Import and Activate Service 4 ASM policy
+- name: Import and Activate Hackazon ASM policy
   bigip_asm_policy:
     server: "{{resource_group_name}}"
     user: "{{ bigip_user }}"
     password: "{{ bigip_pass }}"
-    name: Service_4_WAF
-    file: "roles/service_4/files/linux-high.xml"
+    name: waf_baseCredentials
+    #file: "roles/hackazon/files/linux-high.xml"
     active: yes
     state: present
     validate_certs: no
@@ -23,7 +23,7 @@
 
 - name: Add an iAppLX Package for Application Services 3
   bigip_iapplx_package:
-    package: "roles/service_4/files/f5-appsvcs-3.1.0-3.noarch.rpm"
+    package: "roles/hackazon/files/f5-appsvcs-3.1.0-3.noarch.rpm"
     password: "{{ bigip_pass }}"
     server: "{{resource_group_name}}"
     state: present
@@ -46,10 +46,10 @@
   set_fact:
     bigip_auth_token: "{{ bigip_auth_response.json.token.token }}"
 
-- name: Deploy Service 4 (AS3 Build WAF Application) from AS3
+- name: Deploy Hackazon (AS3 Build WAF Application) from AS3
   delegate_to: localhost
   uri:
-    body: "{{ lookup('file','service_4.json') | to_json }}"
+    body: "{{ lookup('file','hackazon.json') | to_json }}"
     body_format: json
     headers:
       X-F5-Auth-Token: "{{ bigip_auth_token }}"
