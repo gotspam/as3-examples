@@ -6,6 +6,7 @@
   roles:
     - hackazon
   vars:
+    roles_path: "./roles"
     resource_group_name: "{{ inventory_hostname }}"
     state: "present"
 
