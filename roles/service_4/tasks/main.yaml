@@ -14,7 +14,7 @@
     server: "{{resource_group_name}}"
     user: "{{ bigip_user }}"
     password: "{{ bigip_pass }}"
-    name: Service_4_WAF
+    name: 	waf_baseCredentials
     file: "roles/service_4/files/linux-high.xml"
     active: yes
     state: present

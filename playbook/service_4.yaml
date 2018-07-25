@@ -1,10 +1,10 @@
 ---
-- name: "Destroy services (AS3)"
+- name: "Declarative: Deploy / teardown a service template (AS3)"
   hosts: bigips
   gather_facts: False
   connection: local
   roles:
-    - destroy_all_services
+    - service_4
   vars:
     resource_group_name: "{{ inventory_hostname }}"
     state: "present"
