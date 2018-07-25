@@ -1,0 +1,69 @@
+{
+	"class": "AS3",
+	"action": "deploy",
+	"declaration": {
+		"class": "ADC",
+		"schemaVersion": "3.0.0",
+		"id": "hackazon_id",
+		"label": "hackazon_label",
+		"remark": "hackazon_remark",
+		"Hackazon": {
+			"class": "Tenant",
+			"hackazon": {
+				"class": "Application",
+				"template": "https",
+				"serviceMain": {
+					"class": "Service_HTTPS",
+					"virtualAddresses": [
+						"10.0.1.89"
+					],
+					"snat": "auto",
+					"pool": "Hack1",
+					"profileHTTP": {
+						"use": "HTTP_Profile"
+					},
+					"profileCompressionHTTP": {
+						"use": "HTTP_Compress"
+					},
+					"serverTLS": {
+						"bigip": "/Common/student12-clientssl.prf"
+					},
+					"policyWAF": {
+						"bigip": "/Common/waf_baseCredentials"
+					}
+				},
+				"Hack1": {
+					"class": "Pool",
+					"monitors": [
+						"http"
+					],
+					"members": [{
+							"servicePort": 80,
+							"serverAddresses": [
+								"18.205.1.169"
+							]
+						},
+						{
+							"servicePort": 80,
+							"serverAddresses": [
+								"34.239.240.82"
+							]
+						}
+					]
+				},
+				"HTTP_Profile": {
+					"class": "HTTP_Profile",
+					"adcName": "Hackazon1",
+					"xForwardedFor": true
+				},
+				"HTTP_Compress": {
+					"class": "HTTP_Compress",
+					"cpuSaver": true,
+					"cpuSaverHigh": 70,
+					"cpuSaverLow": 50,
+					"selective": true
+				}
+			}
+		}
+	}
+}
