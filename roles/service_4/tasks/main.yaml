@@ -9,6 +9,18 @@
     validate_certs: no
   delegate_to: localhost
 
+- name: Import and Activate Service 4 ASM policy
+  bigip_asm_policy:
+    server: "{{resource_group_name}}"
+    user: "{{ bigip_user }}"
+    password: "{{ bigip_pass }}"
+    name: Service_4_WAF
+    file: "roles/service_4/files/linux-high.xml"
+    active: yes
+    state: present
+    validate_certs: no
+  delegate_to: localhost
+
 - name: Add an iAppLX Package for Application Services 3
   bigip_iapplx_package:
     package: "roles/service_4/files/f5-appsvcs-3.1.0-3.noarch.rpm"

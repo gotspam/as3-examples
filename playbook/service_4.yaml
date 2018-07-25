@@ -10,9 +10,9 @@
     state: "present"
 
   vars_prompt:
-    - name: "username"
+    - name: "bigip_user"
       prompt: "Enter BIG-IP username"
       private: yes
-    - name: "password"
+    - name: "bigip_pass"
       prompt: "Enter BIG-IP password"
-      private: yes  
+      private: yes
