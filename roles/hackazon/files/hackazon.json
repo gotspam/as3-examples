@@ -26,7 +26,7 @@
 						"use": "HTTP_Compress"
 					},
 					"serverTLS": {
-						"bigip": "/Common/student12-clientssl.prf"
+						"bigip": "/Common/hackazon-clientssl.prf"
 					},
 					"policyWAF": {
 						"bigip": "/Common/waf_baseCredentials"
