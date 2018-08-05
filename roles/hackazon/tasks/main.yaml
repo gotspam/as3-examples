@@ -57,3 +57,33 @@
     status_code: 200
     url: "https://{{resource_group_name}}/mgmt/shared/appsvcs/declare"
     validate_certs: no
+
+- name: Add Security Log Profile
+  delegate_to: localhost
+  uri:
+    body: |
+      {
+        "securityLogProfiles": ["\"/Common/waf_log\""]
+        }
+    body_format: json
+    headers:
+      X-F5-Auth-Token: "{{ bigip_auth_token }}"
+    method: PATCH
+    status_code: 200
+    url: "https://{{resource_group_name}}/mgmt/tm/ltm/virtual/~Hackazon~hackazon~serviceMain"
+    validate_certs: no
+
+- name: Add Antifruad Profile
+  delegate_to: localhost
+  uri:
+    body: |
+      {
+        "profiles": ["HTTP_Profile", "/Common/websecurity", "/Common/ASM_waf_baseCredentials", "/Common/hackazon-clientssl.prf", "/Common/protect_credentials"]
+        }
+    body_format: json
+    headers:
+      X-F5-Auth-Token: "{{ bigip_auth_token }}"
+    method: PATCH
+    status_code: 200
+    url: "https://{{resource_group_name}}/mgmt/tm/ltm/virtual/~Hackazon~hackazon~serviceMain"
+    validate_certs: no
