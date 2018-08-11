@@ -58,6 +58,15 @@
     url: "https://{{resource_group_name}}/mgmt/shared/appsvcs/declare"
     validate_certs: no
 
+- name: Wait a maximum of 300 seconds for BIG-IP to be ready to take configuration
+  bigip_wait:
+    timeout: 300
+    password: "{{ bigip_pass }}"
+    server: "{{resource_group_name}}"
+    user: "{{ bigip_user }}"
+    validate_certs: no
+  delegate_to: localhost
+  
 - name: Add Security Log Profile
   delegate_to: localhost
   uri:
