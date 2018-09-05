@@ -15,7 +15,7 @@
 				"serviceMain": {
 					"class": "Service_HTTPS",
 					"virtualAddresses": [
-						"10.0.1.89"
+						"10.0.1.90"
 					],
 					"snat": "auto",
 					"pool": "Hack1",
@@ -40,13 +40,13 @@
 					"members": [{
 							"servicePort": 80,
 							"serverAddresses": [
-								"18.205.1.169"
+								"52.73.21.161"
 							]
 						},
 						{
 							"servicePort": 80,
 							"serverAddresses": [
-								"34.239.240.82"
+								"54.158.245.60"
 							]
 						}
 					]
